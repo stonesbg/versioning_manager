@@ -1,0 +1,11 @@
+﻿namespace versioning_manager.api.Controllers
+{
+    public class VersionRequest
+    {
+        public int? Major { get; set; }
+        public int? Minor { get; set; }
+        public int? Build { get; set; }
+        public int? Revision { get; set; }
+
+    }
+}

@@ -6,6 +6,8 @@ namespace versioning_manager.contracts.Data
     public interface IVersionRepository
     {
         IEnumerable<Version> GetAll();
+
+        void Add(Version version);
     }
 
 }

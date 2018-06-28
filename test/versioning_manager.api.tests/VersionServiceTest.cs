@@ -32,6 +32,7 @@ namespace versioning_manager.api.tests
             var version = service.GetVersion();
             version.Should().Be(new Version(8, 2, 1, 0));
         }
+
         [Fact]
         public void GetVersionNoVersions()
         {

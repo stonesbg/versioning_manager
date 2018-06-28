@@ -6,5 +6,7 @@ namespace versioning_manager.contracts.Services
     public interface IOrganizationService
     {
         IEnumerable<IOrganization> GetOrganizations();
+
+        void AddOrganization(IOrganization org);
     }
 }

@@ -7,6 +7,7 @@ using versioning_manager.api.Controllers;
 using versioning_manager.api.Services;
 using versioning_manager.contracts.Data;
 using versioning_manager.contracts.Services;
+using versioning_manager.data.litedb;
 
 namespace versioning_manager.api
 {

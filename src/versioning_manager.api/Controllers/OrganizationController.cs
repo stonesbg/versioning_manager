@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using versioning_manager.api.Models;
 using versioning_manager.contracts.Models;
 using versioning_manager.contracts.Services;
 
@@ -27,6 +28,13 @@ namespace versioning_manager.api.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+
+        [HttpPost]
+        public ActionResult AddOrganization(Organization org)
+        {
+            _service.AddOrganization(org);
+            return Ok();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using versioning_manager.contracts.Models;
 
-namespace versioning_manager.contracts.Data
+namespace versioning_manager.data.mongodb
 {
     public interface IOrganizationRepository
     {

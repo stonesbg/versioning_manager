@@ -17,5 +17,10 @@ namespace versioning_manager.api.Services
         {
             return _repository.GetAll();
         }
+
+        public void AddOrganization(IOrganization org)
+        {
+            _repository.Add(org);
+        }
     }
 }

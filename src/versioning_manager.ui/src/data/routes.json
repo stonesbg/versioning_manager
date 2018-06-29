@@ -1,3 +1,5 @@
 {
-  "/api/*": "/$1"
+  "/api/product/:org_id": "/api/product?org_id=:org_id",
+  "/api/version/:product_id": "/api/version?product_id=:product_id",
+  "/api/:resource": "/:resource"
 }

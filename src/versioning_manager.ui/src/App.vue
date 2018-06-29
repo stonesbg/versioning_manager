@@ -1,11 +1,19 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app">
+    <Sidebar :drawer='drawer'/>
+    <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid>
+        <router-view/>
+      </v-container>
+    </v-content>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2017</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <style lang="scss">
@@ -27,3 +35,20 @@
   }
 }
 </style>
+
+<script lang="ts">
+import 'vuetify/dist/vuetify.min.css';
+import { Component, Vue } from 'vue-property-decorator';
+import OrgCreate from './components/OrgCreate.vue';
+import Sidebar from './components/Sidebar.vue';
+
+@Component({
+  components: {
+    OrgCreate,
+    Sidebar,
+  },
+})
+export default class Home extends Vue {
+  private drawer: boolean = false; // Start with the side bar is closed
+}
+</script>

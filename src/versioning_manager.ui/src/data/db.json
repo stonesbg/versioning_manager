@@ -1,0 +1,15 @@
+{
+  "organization": [{
+    "id": 1,
+    "name": "Org - Microsoft"
+  }, {
+    "id": 1,
+    "name": "Org - Google"
+  }, {
+    "id": 1,
+    "name": "Org - Facebook"
+  }, {
+    "id": 1,
+    "name": "Org - Twitter"
+  }]
+}

@@ -1,4 +1,4 @@
-import { Version } from './Version';
+import { Version } from '@/models/Version';
 
 export class Product {
   public Name: string;

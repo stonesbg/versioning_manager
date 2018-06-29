@@ -43,19 +43,19 @@ import { Component, Vue } from "vue-property-decorator";
 import { Organization } from "../models/Organization";
 import { Version } from "../models/Version";
 import { Product } from "../models/Product";
-import OrganizationService from '../services/OrganizationService'
+import OrganizationService from "../services/OrganizationService";
 
 @Component
 export default class OrgOverview extends Vue {
   private org: Organization = {
-      Id: -1,
-      Name:"[Organization]",
-      Products: []};
+    Id: -1,
+    Name: "[Organization]"
+  };
 
-  public loadOrg(id: number){
+  public loadOrg(id: number) {
     OrganizationService.getOrganization(id)
-    .then(data => this.org = data)
-    .catch(error => console.log(error));
+      .then(data => (this.org = data))
+      .catch(error => console.log(error));
   }
 
   public mounted() {
@@ -66,11 +66,11 @@ export default class OrgOverview extends Vue {
   private formatVersion(version: Version) {
     return (
       version.Major +
-      '.' +
+      "." +
       version.Minor +
-      '.' +
+      "." +
       version.Build +
-      '.' +
+      "." +
       version.Revision
     );
   }

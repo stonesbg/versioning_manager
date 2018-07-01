@@ -1,4 +1,12 @@
-export class Version {
+
+export interface IVersion {
+  Major: number;
+  Minor: number;
+  Build: number;
+  Revision: number;
+}
+
+export class Version implements IVersion{
   public Major: number;
   public Minor: number;
   public Build: number;

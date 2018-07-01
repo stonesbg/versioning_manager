@@ -1,24 +1,24 @@
-import { AxiosResponse } from 'axios';
 import { Organization } from '@/models/Organization';
 import Api from '@/services/Api';
+import { AxiosResponse } from 'axios';
 
-interface Org {
+interface OrgResponse {
   id: number;
   name: string;
 }
 
 export default {
-  async getOrganization(id: number) {
-    const response: AxiosResponse<Organization> = await Api().get<Organization>('/organization/' + id);
-    return response.data;
+  async getById(id: number) {
+    const response = await Api().get('/organization/' + id) as AxiosResponse<OrgResponse>;
+    const organization = new Organization(response.data.id, response.data.name);
+
+    return organization as Organization;
   },
-  async getOrgnizations() {
-    const response = await Api().get('/organization') as AxiosResponse<Org[]>;
+  async getAll() {
+    const response = await Api().get('/organization') as AxiosResponse<OrgResponse[]>;
     const orglist = response.data.map((item) => {
       return new Organization(item.id, item.name);
     });
-
-    console.log(orglist);
 
     return orglist as Organization[];
   },

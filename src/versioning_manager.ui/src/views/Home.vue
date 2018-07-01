@@ -1,24 +1,27 @@
 <template>
   <div class="home">
-    <h1>Organizatons</h1>
+    
     <v-layout row wrap>
-      <v-flex xs10 offset-xs1>
-        <OrgCreate />
+      <v-flex xs12 mb-4>
+        <h1>
+          <span>Organizatons</span>
+          <OrgCreate />
+        </h1>
       </v-flex>
-      <v-flex xs8 offset-xs2>
+      <v-flex xs10 offset-xs1>
         <v-card v-for="org in orgList" :key="org.Name">
-          <v-container fluid grid-list-lg>
-            <v-layout row wrap>
-              <v-flex xs12>
-                <v-card color="blue-grey darken-2" class="white--text">
+          <v-container grid-list-xl>
+            <v-layout>
+              <v-flex>
+                <v-card color="blue-grey darken-2">
                   <v-card-title primary-title>
-                    <div class="headline">{{org.Name}}</div>
+                    <h1 class="headline">{{org.Name}}</h1>
                   </v-card-title>
                   <v-card-text>
                     <div>PLACEHOLDER FOR DESCRIPTION</div>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn flat dark :to="{path: '/organization/' + org.Id}" class="org-link">View</v-btn>
+                    <v-btn flat dark :to="{path: '/organization/' + org.Id}" :org=org class="org-link">View</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-flex>
@@ -46,7 +49,7 @@ export default class Home extends Vue {
   public orgList: Organization[] = [];
 
   public loadOrgs() {
-    OrganizationService.getOrgnizations()
+    OrganizationService.getAll()
     .then((data) => {
       console.log(data);
       this.orgList = data;
@@ -62,13 +65,5 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.headline
-{
-  font-size: 24px !important;
-  font-weight: 400;
-  line-height: 32px !important;
-  letter-spacing: normal !important;
-}
-
 </style>
 

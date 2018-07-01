@@ -8,7 +8,7 @@
                 <h1>{{ org.Name }}</h1>
               </v-card-title>
               <v-card-text>
-                [Placeholder] for details about the Organization created [Placeholder]
+                {{ org.Description }}
               </v-card-text>
             </v-card>
             </v-flex>
@@ -23,8 +23,9 @@
                 <h1>{{ product.Name }}</h1>
               </v-card-title>
               <v-card-text>
+                {{ product.Description }}
                 <h2>Current Version:</h2><span>1.0.0.0</span>
-                <VersionHistoryTable></VersionHistoryTable>
+                <VersionHistoryTable :productId="product.Id" ></VersionHistoryTable>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -53,7 +54,8 @@ import VersionHistoryTable from '@/components/VersionHistoryTable.vue'
 export default class OrgOverview extends Vue {
   private org: Organization = {
     Id: -1,
-    Name: '[Organization]',
+    Name: '',
+    Description: '',
   };
   private productList: Product[] = [];
 
@@ -71,16 +73,19 @@ export default class OrgOverview extends Vue {
 
   public mounted() {
     const orgId: number = Number(this.$route.params.id);
+    console.log(orgId);
     this.loadOrgById(orgId);
     this.loadProducts(orgId);
+  }
+
+  public created() {
+    const orgId: number = Number(this.$route.params.id);
+    console.log("created: " + orgId);
   }
 }
 </script>
 
 <style lang="scss">
-// .product-card {
-//   border: 1px #e1e4e8 solid !important;
-//   margin: 0.2em;
-// }
+
 </style>
 

@@ -1,7 +1,7 @@
-
-
 import { Version } from '@/models/Version';
 import { VersionRecord } from '@/models/VersionRecord';
+import Api from '@/services/Api';
+import { AxiosResponse } from 'axios';
 
 interface VersionReponse {
   major: number;
@@ -18,14 +18,16 @@ interface VersionRecordReponse {
 }
 
 export default {
-  // async getByOrgId(orgId: number) {
-  //   const response = await Api().get('/product?org_id=' + orgId) as AxiosResponse<VersionReponse[]>;
-  //   const productList = response.data.map((item) => {
-  //     return new Version(item.id, item.name);
-  //   });
+  async getByProductId(productId: number) {
+    const response = await Api().get('/version?product_id=' + productId) as AxiosResponse<VersionRecordReponse[]>;
+    const versionList = response.data.map((item) => {
+      return new VersionRecord(item.id,
+        new Version(item.version.major, item.version.minor, item.version.build, item.version.revision),
+        item.created_date);
+    });
 
-  //   return productList as Version[];
-  // },
+    return versionList as VersionRecord[];
+  },
   // async getById(id: number) {
   //   const response = await Api().get('/product/' + id) as AxiosResponse<VersionReponse>;
   //   const organization = new Version(response.data.id, response.data.name);

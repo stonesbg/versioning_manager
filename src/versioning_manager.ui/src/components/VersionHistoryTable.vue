@@ -47,7 +47,7 @@ export default class VersionHistoryTable extends Vue {
         ];
 
   public loadVersions(productId: number){
-    VersionService.getAll()
+    VersionService.getByProductId(productId)
       .then((data) => this.versionTable = data)
       .catch((error) => console.log(error));
   }

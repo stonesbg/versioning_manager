@@ -18,7 +18,7 @@
                     <h1 class="headline">{{org.Name}}</h1>
                   </v-card-title>
                   <v-card-text>
-                    <div>PLACEHOLDER FOR DESCRIPTION</div>
+                    <div>{{ org.Description }}</div>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn flat dark :to="{path: '/organization/' + org.Id}" :org=org class="org-link">View</v-btn>

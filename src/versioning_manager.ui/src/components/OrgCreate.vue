@@ -52,7 +52,7 @@ export default class OrgCreate extends Vue {
 
   public closeButton() {
     alert('Simulated close create org.');
-    this.dialog = false
+    this.dialog = false;
   }
 
   public greeting() {

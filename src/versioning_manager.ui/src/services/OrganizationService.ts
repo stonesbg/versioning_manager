@@ -2,9 +2,9 @@ import { AxiosResponse } from 'axios';
 import { Organization } from '@/models/Organization';
 import Api from '@/services/Api';
 
-type Org = {
-  id: number,
-  name: string,
+interface Org {
+  id: number;
+  name: string;
 }
 
 export default {

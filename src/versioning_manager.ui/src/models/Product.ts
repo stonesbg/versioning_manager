@@ -1,11 +1,12 @@
-import { Version } from '@/models/Version';
 
 export class Product {
+  public Id: number;
   public Name: string;
-  public CurrentVersion: Version;
+  public Description: string;
 
-  constructor(name: string) {
+  constructor(id: number, name: string, description: string) {
+    this.Id = id;
     this.Name = name;
-    this.CurrentVersion = new Version(1, 0, 0, 0);
+    this.Description = description;
   }
 }

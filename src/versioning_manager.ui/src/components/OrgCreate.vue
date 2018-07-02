@@ -1,6 +1,8 @@
 <template>
 <v-dialog v-model="dialog" persistent max-width="500px">
-      <v-btn slot="activator" color="primary" dark>Create Organization</v-btn>
+      <v-btn slot="activator" outline fab small primary darken-1 >
+        <v-icon dark>add</v-icon>
+      </v-btn>
   <v-card>
     <v-card-title>
       <span class="headline">Organization</span>
@@ -29,36 +31,36 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="blue darken-1" flat @click.native="closeButton">Close</v-btn>
-      <v-btn color="blue darken-1" flat @click.native="addButton">Save</v-btn>
+      <v-btn flat secondary darken-1 @click.native="closeButton">Close</v-btn>
+      <v-btn flat primary darken-1 @click.native="addButton">Save</v-btn>
     </v-card-actions>
   </v-card>
   </v-dialog>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Prop, Watch, Vue } from "vue-property-decorator";
 
 @Component
 export default class OrgCreate extends Vue {
   @Prop() private dialog: boolean = false;
-  private name: string = '';
-  private outputText: string = '';
+  private name: string = "";
+  private outputText: string = "";
 
   public addButton() {
-    alert('Simulated create of the Org: ' + this.name);
+    alert("Simulated create of the Org: " + this.name);
     this.dialog = false;
   }
 
   public closeButton() {
-    alert('Simulated close create org.');
-    this.dialog = false
+    alert("Simulated close create org.");
+    this.dialog = false;
   }
 
   public greeting() {
-    let result = '';
-    if (this.name !== '') {
-      result = 'New organization ' + this.name + ' will be created.'; // + this.$store.organization;
+    let result = "";
+    if (this.name !== "") {
+      result = "New organization " + this.name + " will be created."; // + this.$store.organization;
     }
 
     return result;

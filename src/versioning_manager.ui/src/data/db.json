@@ -1,15 +1,153 @@
 {
   "organization": [{
     "id": 1,
-    "name": "Org - Microsoft"
+    "name": "Microsoft",
+    "description": "Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington. It develops, manufactures, licenses, supports and sells computer software, consumer electronics, personal computers, and services"
   }, {
-    "id": 1,
-    "name": "Org - Google"
+    "id": 2,
+    "name": "Google",
+    "description": "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, search engine, cloud computing, software, and hardware. Google was founded in 1998 by Larry Page and Sergey Brin while they were Ph.D"
   }, {
-    "id": 1,
-    "name": "Org - Facebook"
+    "id": 3,
+    "name": "Facebook",
+    "description": "Facebook is an American online social media and social networking service company based in Menlo Park, California"
   }, {
-    "id": 1,
-    "name": "Org - Twitter"
-  }]
+    "id": 4,
+    "name": "Twitter",
+    "description": "Twitter is an online news and social networking service on which users post and interact with messages known as 'tweets'. Tweets were originally restricted to 140 characters, but on November 7, 2017, this limit was doubled for all languages except Japanese, Korean, and Chinese."
+  }],
+  "product": [{
+      "id": 1,
+      "name": "Superman",
+      "description": "TBD",
+      "org_id": 3
+    },
+    {
+      "id": 2,
+      "name": "Batman",
+      "description": "TBD",
+      "org_id": 3
+    },
+    {
+      "id": 3,
+      "name": "Wonder Woman",
+      "description": "TBD",
+      "org_id": 3
+    },
+    {
+      "id": 4,
+      "name": "Aquaman",
+      "description": "TBD",
+      "org_id": 3
+    },
+    {
+      "id": 5,
+      "name": "Goofy",
+      "description": "TBD",
+      "org_id": 2
+    }
+  ],
+  "version": [
+    {
+      "id": 1,
+      "version": {
+        "major": 1,
+        "minor": 0,
+        "build": 0,
+        "revision": 0
+      },
+      "created_date": "2012-04-23T18:25:43.511Z",
+      "product_id": 5
+    },
+    {
+      "id": 2,
+      "version": {
+      "major": 1,
+      "minor": 2,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2012-04-23T18:25:43.511Z",
+      "product_id": 3
+    },
+    {
+      "id": 3,
+      "version": {
+      "major": 13,
+      "minor": 0,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2012-04-23T18:25:43.511Z",
+      "product_id": 3
+    },
+    {
+      "id": 4,
+      "version": {
+      "major": 1,
+      "minor": 0,
+      "build": 3,
+      "revision": 0},
+      "created_date": "2012-04-23T18:25:43.511Z",
+      "product_id": 3
+    },
+    {
+      "id": 5,
+      "version": {
+      "major": 1,
+      "minor": 0,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2018-05-30T18:25:43.511Z",
+      "product_id": 3
+    },
+    {
+      "id": 6,
+      "version": {
+      "major": 1,
+      "minor": 3,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2018-04-23T18:25:43.511Z",
+      "product_id": 3
+    },
+    {
+      "id": 7,
+      "version": {
+      "major": 1,
+      "minor": 0,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2018-05-23T18:25:43.511Z",
+      "product_id": 2
+    },
+    {
+      "id": 8,
+      "version": {
+      "major": 1,
+      "minor": 3,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2017-04-23T18:25:43.511Z",
+      "product_id": 2
+    },
+    {
+      "id": 9,
+      "version": {
+      "major": 1,
+      "minor": 0,
+      "build": 4,
+      "revision": 0},
+      "created_date": "2018-04-23T18:25:43.511Z",
+      "product_id": 1
+    },
+    {
+      "id": 10,
+      "version": {
+      "major": 1,
+      "minor": 0,
+      "build": 0,
+      "revision": 0},
+      "created_date": "2013-04-23T18:25:43.511Z",
+      "product_id": 4
+    }
+  ]
 }

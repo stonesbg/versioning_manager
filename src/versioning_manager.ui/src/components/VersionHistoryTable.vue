@@ -1,20 +1,23 @@
 <template>
-  <v-data-table
-    :headers="versionHeaders"
-    :items="versionTable"
-    hide-actions
-    class="elevation-1"
-  >
-    <template slot="items" slot-scope="props">
-      <td>{{ formatVersion(props.item.Version) }}</td>
-      <td>
-        <v-tooltip bottom>
-          <span slot="activator">{{ humanizeDate(props.item.CreatedDate) }}</span>
-          <span>Actual Date: {{ formatDateToString(props.item.CreatedDate) }}</span>
-        </v-tooltip>
-      </td>
-    </template>
-  </v-data-table>
+  <div>
+    <h2>Current Version:</h2><span>{{ currentVersionString() }}</span>
+    <v-data-table
+      :headers="versionHeaders"
+      :items="versionTable"
+      hide-actions
+      class="elevation-1"
+    >
+      <template slot="items" slot-scope="props">
+        <td>{{ formatVersion(props.item.Version) }}</td>
+        <td>
+          <v-tooltip bottom>
+            <span slot="activator">{{ humanizeDate(props.item.CreatedDate) }}</span>
+            <span>Actual Date: {{ formatDateToString(props.item.CreatedDate) }}</span>
+          </v-tooltip>
+        </td>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,14 +29,14 @@ import ProductService from '@/services/ProductService';
 import OrganizationService from '@/services/OrganizationService';
 import VersionService from '@/services/VersionService';
 import moment from 'moment'
+import { VersionRecord } from '@/models/VersionRecord';
 
 @Component
 export default class VersionHistoryTable extends Vue {
   @Prop()
   public productId!: number;
 
-  //TODO: Specify type
-  private versionTable: any = [];
+  private versionTable: VersionRecord[] = [];
   
   //TODO: Specify type
   private versionHeaders: any = [
@@ -50,6 +53,23 @@ export default class VersionHistoryTable extends Vue {
     VersionService.getByProductId(productId)
       .then((data) => this.versionTable = data)
       .catch((error) => console.log(error));
+  }
+
+  public currentVersionString(): string {
+    if(this.versionTable.length > 0)
+      return this.formatVersion(this.versionTable[0].Version);
+    else
+      return '';
+  }
+
+  public sortedVersion(): VersionRecord[] {
+    this.versionTable = this.versionTable.sort((left: VersionRecord, right: VersionRecord): number => {
+      if (left.Id < right.Id) return 1;
+      if (left.Id > right.Id) return -1;
+      return 0;
+    });
+
+    return this.versionTable;
   }
 
   public mounted() {

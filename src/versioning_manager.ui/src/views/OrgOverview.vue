@@ -24,7 +24,6 @@
               </v-card-title>
               <v-card-text>
                 {{ product.Description }}
-                <h2>Current Version:</h2><span>1.0.0.0</span>
                 <VersionHistoryTable :productId="product.Id" ></VersionHistoryTable>
               </v-card-text>
             </v-card>
@@ -73,14 +72,8 @@ export default class OrgOverview extends Vue {
 
   public mounted() {
     const orgId: number = Number(this.$route.params.id);
-    console.log(orgId);
     this.loadOrgById(orgId);
     this.loadProducts(orgId);
-  }
-
-  public created() {
-    const orgId: number = Number(this.$route.params.id);
-    console.log("created: " + orgId);
   }
 }
 </script>

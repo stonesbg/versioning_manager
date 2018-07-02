@@ -9,7 +9,7 @@
 
     <v-content>
       <v-container fluid>
-        <router-view/>
+        <router-view :key="$route.fullPath"/>
       </v-container>
     </v-content>
 

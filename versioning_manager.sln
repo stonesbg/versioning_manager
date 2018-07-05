@@ -30,9 +30,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "versioning_manager.ui", "sr
 		SlnRelativePath = "src\versioning_manager.ui\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "versioning_manager.data.litedb", "src\versioning_manager.data.litedb\versioning_manager.data.litedb.csproj", "{7F03835C-4410-40D1-BD35-C736A8DF3871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "versioning_manager.data.litedb", "src\versioning_manager.data.litedb\versioning_manager.data.litedb.csproj", "{7F03835C-4410-40D1-BD35-C736A8DF3871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "versioning_manager.data.mongobd", "src\versioning_manager.data.mongobd\versioning_manager.data.mongobd.csproj", "{E9107E49-377D-4622-8A98-889FA5D8E452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "versioning_manager.data.mongobd", "src\versioning_manager.data.mongobd\versioning_manager.data.mongobd.csproj", "{E9107E49-377D-4622-8A98-889FA5D8E452}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{931A4AA2-CEE9-4E2E-954C-C0C6DF814241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A7CFE81-8E50-4ACE-BECB-9EBDC5533FEA} = {931A4AA2-CEE9-4E2E-954C-C0C6DF814241}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {587E95D0-9C03-4221-9A16-8FB8CAB83808}

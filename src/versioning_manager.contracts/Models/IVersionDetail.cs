@@ -6,11 +6,13 @@ namespace versioning_manager.contracts.Models
 {
     public interface IVersionDetail
     {
-      int Id { get; set; }
+        int Id { get; set; }
 
-      Version Version { get; set; }
+        Version Version { get; set; }
 
-      DateTime CreatedDate { get; set; }
+        DateTime CreatedDate { get; set; }
 
-  }
+        IProduct Product { get; set; }
+
+    }
 }

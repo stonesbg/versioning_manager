@@ -8,6 +8,8 @@ namespace versioning_manager.contracts.Data
     {
         IEnumerable<IVersionDetail> GetAll();
 
+        IEnumerable<IVersionDetail> GetByProductId(int productId);
+
         void Add(IVersionDetail version);
     }
 

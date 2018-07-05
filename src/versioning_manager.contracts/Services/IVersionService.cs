@@ -6,33 +6,17 @@ namespace versioning_manager.contracts.Services
 {
     public interface IVersionService
     {
-        IVersionDetail GetVersion();
+        IEnumerable<IVersionDetail> GetVersions(IVersionRequest request);
 
-    IVersionDetail GetVersion(int major);
+        IVersionDetail IncrementVersion(IVersionRequest request);
+    }
 
-    IVersionDetail GetVersion(int major, int minor);
+    public interface IVersionRequest
+    {
+        int ProductId { get; set; }
+        int? Major {get; set;}
 
-    IVersionDetail GetVersion(int major, int minor, int build);
-
-    IVersionDetail GetVersion(int major, int minor, int build, int revision);
-
-        IEnumerable<IVersionDetail> GetVersions();
-
-        IEnumerable<IVersionDetail> GetVersions(int major);
-
-        IEnumerable<IVersionDetail> GetVersions(int major, int minor);
-
-        IEnumerable<IVersionDetail> GetVersions(int major, int minor, int build);
-
-        IEnumerable<IVersionDetail> GetVersions(int major, int minor, int build, int revision);
-
-    IVersionDetail IncrementBuildVersion();
-
-    IVersionDetail IncrementMajorVersion();
-
-    IVersionDetail IncrementMinorVersion();
-
-    IVersionDetail IncrementRevisionVersion();
+        int? Minor { get; set; }
     }
 
 }

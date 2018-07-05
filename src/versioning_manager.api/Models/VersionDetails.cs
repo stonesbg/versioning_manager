@@ -15,7 +15,7 @@ namespace versioning_manager.api.Models
     public DateTime CreatedDate { get; set; }
 
     [BsonRef]
-    public Product Product { get; set; }
+    public IProduct Product { get; set; }
 
   }
 

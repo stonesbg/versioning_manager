@@ -1,6 +1,8 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using versioning_manager.api.Models;
+using versioning_manager.contracts.Models;
 using versioning_manager.contracts.Services;
 
 namespace versioning_manager.api.Controllers
@@ -17,11 +19,11 @@ namespace versioning_manager.api.Controllers
         }
 
 
-        public ActionResult<Version> GetVersion()
+        public ActionResult<VersionDetail> GetVersion()
         {
             try
             {
-                return _service.GetVersion();
+                return _service.GetVersion() as VersionDetail;
             }
             catch (Exception ex)
             {
@@ -30,7 +32,7 @@ namespace versioning_manager.api.Controllers
         }
 
         [HttpGet("test")]
-        public Version GetVersion(VersionRequest versionRequests)
+        public IVersionDetail GetVersion(VersionRequest versionRequests)
         {
             if (versionRequests.Major.HasValue)
             {
@@ -41,49 +43,49 @@ namespace versioning_manager.api.Controllers
         }
 
         [HttpGet("{major}")]
-        public Version GetVersion(int major)
+        public IVersionDetail GetVersion(int major)
         {
             return _service.GetVersion(major);
         }
 
         [HttpGet("{major}/{minor}")]
-        public Version GetVersion(int major, int minor)
+        public IVersionDetail GetVersion(int major, int minor)
         {
             return _service.GetVersion(major, minor);
         }
 
         [HttpGet("{major}/{minor}/{build}")]
-        public Version GetVersion(int major, int minor, int build)
+        public IVersionDetail GetVersion(int major, int minor, int build)
         {
             return _service.GetVersion(major, minor, build);
         }
 
         [HttpGet("{major}/{minor}/{build}/{revision}")]
-        public Version GetVersion(int major, int minor, int build, int revision)
+        public IVersionDetail GetVersion(int major, int minor, int build, int revision)
         {
             return _service.GetVersion(major, minor, build, revision);
         }
 
         [HttpPatch("increment/major")]
-        public Version IncrementMajorVersion()
+        public IVersionDetail IncrementMajorVersion()
         {
             return _service.IncrementMajorVersion();
         }
 
         [HttpPatch("increment/minor")]
-        public Version IncrementMinorVersion()
+        public IVersionDetail IncrementMinorVersion()
         {
             return _service.IncrementMinorVersion();
         }
 
         [HttpPatch("increment/build")]
-        public Version IncrementBuildVersion()
+        public IVersionDetail IncrementBuildVersion()
         {
             return _service.IncrementBuildVersion();
         }
 
         [HttpPatch("increment/revision")]
-        public Version IncrementRevisionVersion()
+        public IVersionDetail IncrementRevisionVersion()
         {
             return _service.IncrementRevisionVersion();
         }

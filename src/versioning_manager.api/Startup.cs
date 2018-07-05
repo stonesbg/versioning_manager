@@ -26,7 +26,7 @@ namespace versioning_manager.api
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
       //services.AddCors();
 
-      services.AddScoped<IVersionRepository, VersionRepository>();
+      services.AddScoped<IVersionDetailRepository, VersionDetailRepository>();
       services.AddTransient<IVersionService, VersionService>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddTransient<IProductService, ProductService>();

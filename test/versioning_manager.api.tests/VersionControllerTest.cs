@@ -7,24 +7,55 @@ using Moq;
 using Microsoft.AspNetCore.Mvc;
 using versioning_manager.contracts.Data;
 using versioning_manager.api.Services;
+using versioning_manager.api.Models;
 
 namespace versioning_manager.api.tests
 {
     public class VersionControllerTest
     {
-        IEnumerable<Version> VersionNumbers = new List<Version>
+        IEnumerable<VersionDetail> VersionNumbers = new List<VersionDetail>
             {
-                new Version(8, 1, 100, 0),
-                new Version(8, 1, 101, 0),
-                new Version(8, 1, 102, 0),
-                new Version(8, 2, 0, 0),
-                new Version(8, 2, 1, 0)
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 1, 100, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 1, 101, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 1, 102, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 2, 100, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 3, 100, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 4, 1, 0),
+                  CreatedDate = DateTime.UtcNow
+                },
+                new VersionDetail {
+                  Id = 1,
+                  Version = new Version(8, 4, 102, 0),
+                  CreatedDate = DateTime.UtcNow
+                }
             };
 
         [Fact]
         public void GetVersion()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -37,7 +68,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void GetVersionMajor()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -50,7 +81,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void GetVersionMajorMinor()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -63,7 +94,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void GetVersionMajorMinorBuild()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -76,7 +107,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void GetVersionMajorMinorBuildRevision()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -89,7 +120,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void IncrementMajorVersion()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -102,7 +133,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void IncrementMinorVersion()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -115,7 +146,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void IncrementBuildVersion()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);
@@ -128,7 +159,7 @@ namespace versioning_manager.api.tests
         [Fact]
         public void IncrementRevisionVersion()
         {
-            var repository = new Mock<IVersionRepository>();
+            var repository = new Mock<IVersionDetailRepository>();
             repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
 
             var service = new VersionService(repository.Object);

@@ -1,37 +1,38 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using versioning_manager.contracts.Models;
 
 namespace versioning_manager.contracts.Services
 {
     public interface IVersionService
     {
-        Version GetVersion();
+        IVersionDetail GetVersion();
 
-        Version GetVersion(int major);
+    IVersionDetail GetVersion(int major);
 
-        Version GetVersion(int major, int minor);
+    IVersionDetail GetVersion(int major, int minor);
 
-        Version GetVersion(int major, int minor, int build);
+    IVersionDetail GetVersion(int major, int minor, int build);
 
-        Version GetVersion(int major, int minor, int build, int revision);
+    IVersionDetail GetVersion(int major, int minor, int build, int revision);
 
-        IEnumerable<Version> GetVersions();
+        IEnumerable<IVersionDetail> GetVersions();
 
-        IEnumerable<Version> GetVersions(int major);
+        IEnumerable<IVersionDetail> GetVersions(int major);
 
-        IEnumerable<Version> GetVersions(int major, int minor);
+        IEnumerable<IVersionDetail> GetVersions(int major, int minor);
 
-        IEnumerable<Version> GetVersions(int major, int minor, int build);
+        IEnumerable<IVersionDetail> GetVersions(int major, int minor, int build);
 
-        IEnumerable<Version> GetVersions(int major, int minor, int build, int revision);
+        IEnumerable<IVersionDetail> GetVersions(int major, int minor, int build, int revision);
 
-        Version IncrementBuildVersion();
+    IVersionDetail IncrementBuildVersion();
 
-        Version IncrementMajorVersion();
+    IVersionDetail IncrementMajorVersion();
 
-        Version IncrementMinorVersion();
+    IVersionDetail IncrementMinorVersion();
 
-        Version IncrementRevisionVersion();
+    IVersionDetail IncrementRevisionVersion();
     }
 
 }

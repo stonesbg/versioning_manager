@@ -1,4 +1,4 @@
-﻿using LiteDB;
+using LiteDB;
 using System.Collections.Generic;
 using versioning_manager.contracts.Data;
 using versioning_manager.contracts.Models;
@@ -13,8 +13,12 @@ namespace versioning_manager.api.Controllers
             // Open database (or create if doesn't exist)
             using (var client = new LiteDatabase(connectionString))
             {
-                var collection = client.GetCollection<IProduct>("product");
-                var result = collection.FindAll();
+                var product = client.GetCollection<IProduct>("product");
+ 
+                var result = product
+                    .Include(x => x.Organization)
+                    .FindAll();
+                
                 return result;
             }
         }
@@ -25,13 +29,17 @@ namespace versioning_manager.api.Controllers
             // Open database (or create if doesn't exist)
             using (var client = new LiteDatabase(connectionString))
             {
-                var collection = client.GetCollection<IProduct>("product");
+                var productCollection = client.GetCollection<IProduct>("product");
+                var organizationCollection = client.GetCollection<IOrganization>("organization");
 
-                // Create unique index in Name field
-                collection.EnsureIndex(x => x.Id, true);
+                // Create unique index in Id field
+                productCollection.EnsureIndex(x => x.Id, true);
+
+                //var organization = organizationCollection.FindById(product.Organization.Id);
+                //product.Organization = organization;
 
                 // Insert new customer document (Id will be auto-incremented)
-                collection.Insert(product);
+                productCollection.Insert(product);
             }
         }
     }

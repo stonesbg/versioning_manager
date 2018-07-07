@@ -24,7 +24,16 @@ namespace versioning_manager.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddCors();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials()
+                    .Build());
+            });
 
             services.AddScoped<IVersionDetailRepository, VersionDetailRepository>();
             services.AddTransient<IVersionService, VersionService>();

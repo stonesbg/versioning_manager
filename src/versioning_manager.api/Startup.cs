@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace versioning_manager.api
                     .Build());
             });
 
+
             services.AddScoped<IVersionDetailRepository, VersionDetailRepository>();
             services.AddTransient<IVersionService, VersionService>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -56,6 +58,7 @@ namespace versioning_manager.api
                 app.UseHsts();
             }
 
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }

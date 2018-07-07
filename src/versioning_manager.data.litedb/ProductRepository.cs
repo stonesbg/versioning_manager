@@ -29,17 +29,13 @@ namespace versioning_manager.api.Controllers
             // Open database (or create if doesn't exist)
             using (var client = new LiteDatabase(connectionString))
             {
-                var productCollection = client.GetCollection<IProduct>("product");
-                var organizationCollection = client.GetCollection<IOrganization>("organization");
+                var collection = client.GetCollection<IProduct>("product");
 
                 // Create unique index in Id field
-                productCollection.EnsureIndex(x => x.Id, true);
-
-                //var organization = organizationCollection.FindById(product.Organization.Id);
-                //product.Organization = organization;
+                collection.EnsureIndex(x => x.Id, true);
 
                 // Insert new customer document (Id will be auto-incremented)
-                productCollection.Insert(product);
+                collection.Insert(product);
             }
         }
     }

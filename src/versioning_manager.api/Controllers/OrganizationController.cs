@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +18,12 @@ namespace versioning_manager.api.Controllers
             _service = service;
         }
 
-        public ActionResult<List<IOrganization>> GetOrganizations()
+        [HttpGet]
+        public ActionResult<List<IOrganization>> GetAll()
         {
             try
             {
-                return _service.GetOrganizations().ToList(); ;
+                return _service.GetAll().ToList(); ;
             }
             catch (Exception ex)
             {
@@ -30,11 +31,23 @@ namespace versioning_manager.api.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AddOrganization(Organization org)
+        [HttpGet("{id}")]
+        public ActionResult<Organization> Get(int id)
         {
-            _service.AddOrganization(org);
-            return Ok();
+            return _service.Get(id) as Organization;
+        }
+
+        [HttpPost]
+        public ActionResult<Organization> Add(Organization org)
+        {
+            try
+            {
+                return _service.Add(org) as Organization;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

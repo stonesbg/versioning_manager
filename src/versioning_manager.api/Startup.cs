@@ -25,30 +25,17 @@ namespace versioning_manager.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //services.AddCors(
-            //    options =>
-            //    {
-            //        options.AddPolicy("MyCorsPolicy",
-            //           builder => builder
-            //              .SetIsOriginAllowedToAllowWildcardSubdomains()
-            //              .WithOrigins("https://*.mydomain.com")
-            //              .AllowAnyMethod()
-            //              .AllowCredentials()
-            //              .AllowAnyHeader()
-            //              .Build()
-            //           );
-            //    });
-
-            var corsBuilder = new CorsPolicyBuilder();
-            corsBuilder.AllowAnyHeader();
-            corsBuilder.AllowAnyMethod();
-            corsBuilder.AllowAnyOrigin();
-            corsBuilder.AllowCredentials();
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", corsBuilder.Build());
+                options.AddPolicy("AllowAll", builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials()
+                    .Build());
             });
+
 
             services.AddScoped<IVersionDetailRepository, VersionDetailRepository>();
             services.AddTransient<IVersionService, VersionService>();

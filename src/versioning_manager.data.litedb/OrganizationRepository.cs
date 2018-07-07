@@ -1,11 +1,11 @@
-﻿using LiteDB;
+using LiteDB;
 using System.Collections.Generic;
 using versioning_manager.contracts.Data;
 using versioning_manager.contracts.Models;
 
 namespace versioning_manager.data.litedb
 {
-    public class OrganizationRepository: IOrganizationRepository
+    public class OrganizationRepository : IOrganizationRepository
     {
         public OrganizationRepository()
         {
@@ -24,7 +24,19 @@ namespace versioning_manager.data.litedb
             }
         }
 
-        public void Add(IOrganization organization)
+        public IOrganization Get(int id)
+        {
+            var connectionString = @"MyData.db";
+            // Open database (or create if doesn't exist)
+            using (var client = new LiteDatabase(connectionString))
+            {
+                var collection = client.GetCollection<IOrganization>("organization");
+                var result = collection.FindById(id);
+                return result;
+            }
+        }
+
+        public IOrganization Add(IOrganization organization)
         {
             var connectionString = @"MyData.db";
             // Open database (or create if doesn't exist)
@@ -36,7 +48,9 @@ namespace versioning_manager.data.litedb
                 collection.EnsureIndex(x => x.Id, true);
 
                 // Insert new customer document (Id will be auto-incremented)
-                collection.Insert(organization);
+                var orgId = collection.Insert(organization);
+
+                return collection.FindById(orgId);
             }
         }
     }

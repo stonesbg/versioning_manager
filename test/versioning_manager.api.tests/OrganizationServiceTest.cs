@@ -1,9 +1,7 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using versioning_manager.api.Models;
 using versioning_manager.api.Services;
 using versioning_manager.contracts.Data;
@@ -28,8 +26,23 @@ namespace versioning_manager.api.tests
 
             var service = new OrganizationService(repository.Object);
 
-            var organizationsList = service.GetOrganizations();
+            var organizationsList = service.GetAll();
             organizationsList.Count().Should().Be(3);
         }
+
+        //[Fact]
+        //public void AddOrg()
+        //{
+        //    var orgToCreate = new Organization() { Name = "New Org 1", Description = "New Description" };
+
+        //    var repository = new Mock<IOrganizationRepository>();
+        //    repository.Setup(x => x.GetAll()).Returns(VersionNumbers);
+
+        //    var service = new OrganizationService(repository.Object);
+
+        //    var organizationsList = service.GetAll();
+        //    organizationsList.Count().Should().Be(3);
+
+        //}
     }
 }

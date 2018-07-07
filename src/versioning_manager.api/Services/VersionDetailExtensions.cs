@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using versioning_manager.contracts.Models;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.Services
 {
     public static class VersionDetailExtensions
     {
-        public static IEnumerable<IVersionDetail> WithMajorVersion(this IEnumerable<IVersionDetail> versionDetails, int? major)
+        public static IEnumerable<VersionDetail> WithMajorVersion(this IEnumerable<VersionDetail> versionDetails, int? major)
         {
             var result = versionDetails;
 
@@ -18,7 +18,7 @@ namespace versioning_manager.api.Services
             return result;
         }
 
-        public static IEnumerable<IVersionDetail> WithMinorVersion(this IEnumerable<IVersionDetail> versionDetails, int? minor)
+        public static IEnumerable<VersionDetail> WithMinorVersion(this IEnumerable<VersionDetail> versionDetails, int? minor)
         {
             var result = versionDetails;
 

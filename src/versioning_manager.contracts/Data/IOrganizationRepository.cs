@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using versioning_manager.contracts.Models;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.contracts.Data
 {
     public interface IOrganizationRepository
     {
-        IEnumerable<IOrganization> GetAll();
+        IEnumerable<Organization> GetAll();
 
-        IOrganization Get(int id);
+        Organization Get(int id);
 
-        IOrganization Add(IOrganization org);
+        Organization Add(Organization org);
     }
 }

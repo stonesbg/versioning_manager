@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\versioning_manager.api\versioning_manager.api.csproj" />
+    <ProjectReference Include="..\..\src\versioning_manager.data.model\versioning_manager.data.model.csproj" />
   </ItemGroup>
 
 </Project>

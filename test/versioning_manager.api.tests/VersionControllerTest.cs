@@ -4,11 +4,10 @@ using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
 using Moq;
-using Microsoft.AspNetCore.Mvc;
 using versioning_manager.contracts.Data;
 using versioning_manager.api.Services;
-using versioning_manager.api.Models;
 using System.Linq;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.tests
 {

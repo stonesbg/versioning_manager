@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using versioning_manager.contracts.Models;
+using System.Collections.Generic;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.contracts.Data
 {
     public interface IProductRepository
     {
-        IEnumerable<IProduct> GetAll();
+        IEnumerable<Product> GetAll();
 
-        void Add(IProduct product);
+        void Add(Product product);
     }
 }

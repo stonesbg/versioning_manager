@@ -7,7 +7,7 @@ using Moq;
 using System.Linq;
 using versioning_manager.contracts.Data;
 using versioning_manager.api.Services;
-using versioning_manager.api.Models;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.tests
 {

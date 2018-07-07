@@ -2,9 +2,9 @@ using FluentAssertions;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
-using versioning_manager.api.Models;
 using versioning_manager.api.Services;
 using versioning_manager.contracts.Data;
+using versioning_manager.data.Models;
 using Xunit;
 
 namespace versioning_manager.api.tests

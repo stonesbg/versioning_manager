@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\versioning_manager.data.model\versioning_manager.data.model.csproj" />
+    <PackageReference Include="Litedb" Version="4.1.4" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LiteDB;
 using Microsoft.AspNetCore.Mvc;
-using versioning_manager.api.Models;
-using versioning_manager.contracts.Models;
 using versioning_manager.contracts.Services;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.Controllers
 {
@@ -19,7 +17,7 @@ namespace versioning_manager.api.Controllers
       _service = service;
     }
 
-    public ActionResult<List<IProduct>> GetProducts()
+    public ActionResult<List<Product>> GetProducts()
     {
       try
       {

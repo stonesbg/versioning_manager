@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using versioning_manager.contracts.Models;
 
 namespace versioning_manager.contracts.Data
@@ -7,6 +7,8 @@ namespace versioning_manager.contracts.Data
     {
         IEnumerable<IOrganization> GetAll();
 
-        void Add(IOrganization org);
+        IOrganization Get(int id);
+
+        IOrganization Add(IOrganization org);
     }
 }

@@ -11,6 +11,7 @@ using versioning_manager.api.Models;
 
 namespace versioning_manager.api.tests
 {
+    [Trait("Category", "Unit")]
     public class VersionServiceTest
     {
         IEnumerable<VersionDetail> VersionDetails = new List<VersionDetail>

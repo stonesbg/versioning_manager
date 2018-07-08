@@ -18,9 +18,9 @@ namespace versioning_manager.api.Services
             return _repository.GetAll();
         }
 
-        public void Add(Product product)
+        public Product Add(Product product)
         {
-          _repository.Add(product);
+            return _repository.Add(product);
         }
-  }
+    }
 }

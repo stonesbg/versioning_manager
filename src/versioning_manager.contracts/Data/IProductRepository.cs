@@ -7,6 +7,6 @@ namespace versioning_manager.contracts.Data
     {
         IEnumerable<Product> GetAll();
 
-        void Add(Product product);
+        Product Add(Product product);
     }
 }

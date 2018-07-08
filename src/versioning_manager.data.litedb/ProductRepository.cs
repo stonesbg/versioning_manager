@@ -14,16 +14,16 @@ namespace versioning_manager.api.Controllers
             using (var client = new LiteDatabase(connectionString))
             {
                 var product = client.GetCollection<Product>("product");
- 
+
                 var result = product
                     .Include(x => x.Organization)
                     .FindAll();
-                
+
                 return result;
             }
         }
 
-        public void Add(Product product)
+        public Product Add(Product product)
         {
             var connectionString = @"MyData.db";
             // Open database (or create if doesn't exist)
@@ -35,7 +35,10 @@ namespace versioning_manager.api.Controllers
                 collection.EnsureIndex(x => x.Id, true);
 
                 // Insert new customer document (Id will be auto-incremented)
-                collection.Insert(product);
+                var createdId = collection.Insert(product);
+
+                return collection.FindById(createdId);
+
             }
         }
     }

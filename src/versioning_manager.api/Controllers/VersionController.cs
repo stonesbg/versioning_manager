@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using versioning_manager.contracts.Services;
@@ -17,15 +18,31 @@ namespace versioning_manager.api.Controllers
         }
 
         [HttpPost("show")]
-        public IEnumerable<VersionDetail> GetVersions(VersionRequest versionRequests)
+        public ActionResult<IEnumerable<VersionDetail>> GetVersions(VersionRequest versionRequests)
         {
-            return _service.GetVersions(versionRequests);
+            try
+            {
+                var versionList = _service.GetVersions(versionRequests);
+                return Ok(versionList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpPatch("increment")]
-        public VersionDetail IncrementVersion(VersionRequest versionRequests)
+        public ActionResult<VersionDetail> IncrementVersion(VersionRequest versionRequests)
         {
-            return _service.IncrementVersion(versionRequests);
+            try
+            {
+                var increment = _service.IncrementVersion(versionRequests);
+                return Ok(increment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

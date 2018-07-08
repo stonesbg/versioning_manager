@@ -18,7 +18,7 @@ namespace versioning_manager.api.tests
             {
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 1, 100, 0),
+                  Version = new VersionSimple(8, 1, 100, 0),
                   CreatedDate = DateTime.UtcNow,
                   Product = new Product
                   {
@@ -27,7 +27,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 1, 101, 0),
+                  Version = new VersionSimple(8, 1, 101, 0),
                   CreatedDate = DateTime.UtcNow,
                     Product = new Product
                   {
@@ -36,7 +36,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 1, 102, 0),
+                  Version = new VersionSimple(8, 1, 102, 0),
                   CreatedDate = DateTime.UtcNow,
                     Product = new Product
                   {
@@ -45,7 +45,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 2, 100, 0),
+                  Version = new VersionSimple(8, 2, 100, 0),
                   CreatedDate = DateTime.UtcNow,
                   Product = new Product
                   {
@@ -54,7 +54,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 3, 100, 0),
+                  Version = new VersionSimple(8, 3, 100, 0),
                   CreatedDate = DateTime.UtcNow,
                   Product = new Product
                   {
@@ -63,7 +63,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 4, 1, 0),
+                  Version = new VersionSimple(8, 4, 1, 0),
                   CreatedDate = DateTime.UtcNow,
                   Product = new Product
                   {
@@ -72,7 +72,7 @@ namespace versioning_manager.api.tests
                 },
                 new VersionDetail {
                   Id = 1,
-                  Version = new Version(8, 4, 102, 0),
+                  Version = new VersionSimple(8, 4, 102, 0),
                   CreatedDate = DateTime.UtcNow,
                   Product = new Product
                   {
@@ -140,7 +140,11 @@ namespace versioning_manager.api.tests
 
             var version = service.GetVersions(versionDetail);
             version.Count().Should().Be(1);
-            version.First().Version.Should().Be(new Version(8, 2, 100, 0));
+            var expectedVersion = new VersionSimple(8, 2, 100, 0);
+            version.First().Version.Major.Should().Be(expectedVersion.Major);
+            version.First().Version.Minor.Should().Be(expectedVersion.Minor);
+            version.First().Version.Build.Should().Be(expectedVersion.Build);
+            version.First().Version.Revision.Should().Be(expectedVersion.Revision);
         }
     }
 }

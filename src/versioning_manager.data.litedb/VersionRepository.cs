@@ -6,7 +6,7 @@ using versioning_manager.data.Models;
 namespace versioning_manager.api.Controllers
 {
     public class VersionDetailRepository : IVersionDetailRepository
-  {
+    {
         public IEnumerable<VersionDetail> GetAll()
         {
             var connectionString = @"MyData.db";
@@ -45,9 +45,7 @@ namespace versioning_manager.api.Controllers
                 // Insert new customer document (Id will be auto-incremented)
                 var versionDetailId = collection.Insert(versionDetail);
 
-                var found = collection.FindById(versionDetailId);
-
-                return null;
+                return collection.FindById(versionDetailId);
             }
         }
     }

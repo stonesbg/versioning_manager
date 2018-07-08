@@ -38,21 +38,22 @@ namespace versioning_manager.api.Services
 
                 if (request.Major.HasValue && !request.Minor.HasValue)
                 {
-                    version = new Version(request.Major.Value, 0);
+                    version = new Version(request.Major.Value, 0, 0, 0);
                 }
                 else if (request.Major.HasValue && request.Minor.HasValue)
                 {
-                    version = new Version(request.Major.Value, request.Minor.Value);
+                    version = new Version(request.Major.Value, request.Minor.Value, 0, 0);
                 }
                 else
                 {
-                    version = new Version(1, 0);
+                    version = new Version(1, 0, 0, 0);
                 }
             }
-            else { 
+            else
+            {
                 version = versionList.First().Version;
 
-                if(!request.Major.HasValue && !request.Minor.HasValue)
+                if (!request.Major.HasValue && !request.Minor.HasValue)
                 {
                     version = version.IncrementBuild();
                 }
@@ -60,7 +61,8 @@ namespace versioning_manager.api.Services
                 {
                     version = version.IncrementMinor();
                 }
-                else {
+                else
+                {
                     version = version.IncrementMajor();
                 }
             }

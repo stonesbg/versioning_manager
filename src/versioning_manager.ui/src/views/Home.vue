@@ -58,6 +58,7 @@ export default class Home extends Vue {
   }
 
   public mounted() {
+    this.$store.dispatch("loadOrgList");
     this.loadOrgs();
   }
 

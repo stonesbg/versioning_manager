@@ -14,18 +14,19 @@
             <v-text-field
               id="org_name"
               name="name"
-              v-model="name"
+              v-model="org.Name"
               label="Name"
             ></v-text-field>
           </v-flex>
-        </v-layout>  
-        <v-layout row>
-          <v-flex xs4>
-          </v-flex>
           <v-flex xs8>
-            <h1>{{enteredText}}</h1>
+            <v-text-field
+              id="org_description"
+              name="description"
+              v-model="org.Description"
+              label="Description"
+            ></v-text-field>
           </v-flex>
-        </v-layout>
+        </v-layout>  
       </v-container>
       <small>*indicates required field</small>
     </v-card-text>
@@ -40,34 +41,23 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from "vue-property-decorator";
+import OrganizationService from "@/services/OrganizationService";
+import { Organization } from "@/models/Organization";
 
 @Component
 export default class OrgCreate extends Vue {
   @Prop() private dialog: boolean = false;
-  private name: string = "";
+  private org: Organization = new Organization(-1, "", "");
   private outputText: string = "";
 
   public addButton() {
-    alert("Simulated create of the Org: " + this.name);
+    OrganizationService.create(this.org);
+    this.$store.commit("addOrg", this.org);
     this.dialog = false;
   }
 
   public closeButton() {
-    alert("Simulated close create org.");
     this.dialog = false;
-  }
-
-  public greeting() {
-    let result = "";
-    if (this.name !== "") {
-      result = "New organization " + this.name + " will be created."; // + this.$store.organization;
-    }
-
-    return result;
-  }
-
-  get enteredText(): string {
-    return this.greeting();
   }
 }
 </script>

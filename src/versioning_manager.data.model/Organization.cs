@@ -1,8 +1,6 @@
-using versioning_manager.contracts.Models;
-
-namespace versioning_manager.api.Models
+namespace versioning_manager.data.Models
 {
-    public class Organization : IOrganization
+    public class Organization
     {
         public int Id { get; set; }
 

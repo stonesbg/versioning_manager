@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using versioning_manager.contracts.Data;
-using versioning_manager.contracts.Models;
 using versioning_manager.contracts.Services;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.Services
 {
@@ -13,17 +13,17 @@ namespace versioning_manager.api.Services
             _repository = repository;
         }
 
-        public IEnumerable<IOrganization> GetAll()
+        public IEnumerable<Organization> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public IOrganization Get(int id)
+        public Organization Get(int id)
         {
             return _repository.Get(id);
         }
 
-        public IOrganization Add(IOrganization org)
+        public Organization Add(Organization org)
         {
             return _repository.Add(org);
         }

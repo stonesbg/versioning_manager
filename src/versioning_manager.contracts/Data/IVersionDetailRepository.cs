@@ -1,16 +1,15 @@
-using System;
 using System.Collections.Generic;
-using versioning_manager.contracts.Models;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.contracts.Data
 {
     public interface IVersionDetailRepository
     {
-        IEnumerable<IVersionDetail> GetAll();
+        IEnumerable<VersionDetail> GetAll();
 
-        IEnumerable<IVersionDetail> GetByProductId(int productId);
+        IEnumerable<VersionDetail> GetByProductId(int productId);
 
-        void Add(IVersionDetail version);
+        VersionDetail Add(VersionDetail version);
     }
 
 }

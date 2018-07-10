@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\versioning_manager.data.litedb\versioning_manager.data.litedb.csproj" />
     <ProjectReference Include="..\versioning_manager.contracts\versioning_manager.contracts.csproj" />
+    <ProjectReference Include="..\versioning_manager.data.model\versioning_manager.data.model.csproj" />
   </ItemGroup>
 
 </Project>

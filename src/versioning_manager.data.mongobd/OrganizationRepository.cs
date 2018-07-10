@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using versioning_manager.contracts.Models;
+using System.Collections.Generic;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.data.mongodb
 {
     public interface IOrganizationRepository
     {
-        IEnumerable<IOrganization> GetAll();
+        IEnumerable<Organization> GetAll();
 
-        void Add(IOrganization org);
+        void Add(Organization org);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using versioning_manager.data.Models;
 
-namespace versioning_manager.api.Services
+namespace versioning_manager.api.Extensions
 {
     public static class VersionDetailExtensions
     {

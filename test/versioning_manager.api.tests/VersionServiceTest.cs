@@ -146,5 +146,48 @@ namespace versioning_manager.api.tests
             version.First().Version.Build.Should().Be(expectedVersion.Build);
             version.First().Version.Revision.Should().Be(expectedVersion.Revision);
         }
+
+        [Fact]
+        public void AddItemToVersion()
+        {
+            var versionDetail = new VersionRequest()
+            {
+                ProductId = 1,
+                Major = 8,
+                Minor = 2
+            };
+
+            var addResult = new VersionDetail
+            {
+                Id = 1,
+                Version = new VersionSimple
+                {
+                    Major = 8,
+                    Minor = 2,
+                    Build = 101,
+                    Revision = 0
+                },
+                CreatedDate = DateTime.Now
+            };
+
+            var repository = new Mock<IVersionDetailRepository>();
+            repository.Setup(x => x.GetByProductId(versionDetail.ProductId))
+                .Returns(VersionDetails
+                    .Where(x => x.Product.Id == versionDetail.ProductId &&
+                        x.Version.Major == versionDetail.Major));
+
+            repository.Setup(x => x.Add(It.IsAny<VersionDetail>()))
+                .Returns(addResult);
+
+            var service = new VersionService(repository.Object);
+
+            var version = service.IncrementVersion(versionDetail);
+
+            var expectedVersion = new VersionSimple(8, 2, 101, 0);
+            version.Version.Major.Should().Be(expectedVersion.Major);
+            version.Version.Minor.Should().Be(expectedVersion.Minor);
+            version.Version.Build.Should().Be(expectedVersion.Build);
+            version.Version.Revision.Should().Be(expectedVersion.Revision);
+        }
     }
 }

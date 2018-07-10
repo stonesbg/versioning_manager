@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using versioning_manager.api.Controllers;
+using versioning_manager.api.Extensions;
 using versioning_manager.contracts.Data;
 using versioning_manager.contracts.Services;
 using versioning_manager.data.Models;
@@ -33,38 +34,12 @@ namespace versioning_manager.api.Services
             VersionSimple version = null;
             if (versionList.Count() == 0)
             {
-                if (!request.Major.HasValue && request.Minor.HasValue)
-                    throw new ArgumentException("Cannot pass a Minor version without Major version");
-
-                if (request.Major.HasValue && !request.Minor.HasValue)
-                {
-                    version = new VersionSimple(request.Major.Value, 0, 0, 0);
-                }
-                else if (request.Major.HasValue && request.Minor.HasValue)
-                {
-                    version = new VersionSimple(request.Major.Value, request.Minor.Value, 0, 0);
-                }
-                else
-                {
-                    version = new VersionSimple(1, 0, 0, 0);
-                }
+                version.CreateIncrement(request);
             }
             else
             {
                 version = versionList.First().Version;
-
-                if (request.Major.HasValue && request.Minor.HasValue)
-                {
-                    version = version.IncrementBuild();
-                }
-                else if (request.Major.HasValue && !request.Minor.HasValue)
-                {
-                    version = version.IncrementMinor();
-                }
-                else
-                {
-                    version = version.IncrementMajor();
-                }
+                version.CalculateIncrement(request);
             }
 
             var versionDetail = new VersionDetail

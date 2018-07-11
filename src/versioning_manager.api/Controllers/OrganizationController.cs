@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using versioning_manager.api.Models;
-using versioning_manager.contracts.Models;
 using versioning_manager.contracts.Services;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.Controllers
 {
@@ -19,11 +18,11 @@ namespace versioning_manager.api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<IOrganization>> GetAll()
+        public ActionResult<List<Organization>> GetAll()
         {
             try
             {
-                return _service.GetAll().ToList(); ;
+                return _service.GetAll().ToList();
             }
             catch (Exception ex)
             {

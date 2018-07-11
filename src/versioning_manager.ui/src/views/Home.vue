@@ -9,7 +9,7 @@
         </h1>
       </v-flex>
       <v-flex xs10 offset-xs1>
-        <v-card v-for="org in orgList" :key="org.Name">
+        <v-card v-for="org in orgList" :key="org.Id">
           <v-container grid-list-xl>
             <v-layout>
               <v-flex>
@@ -51,7 +51,6 @@ export default class Home extends Vue {
   public loadOrgs() {
     OrganizationService.getAll()
     .then((data) => {
-      console.log(data);
       this.orgList = data;
     })
     .catch((error) => console.log(error));

@@ -1,10 +1,8 @@
-using System.Net.Http;
-using versioning_manager.api.Models;
-using Flurl;
 using Xunit;
 using Flurl.Http;
 using System;
 using FluentAssertions;
+using versioning_manager.data.Models;
 
 namespace versioning_manager.api.tests.integration
 {

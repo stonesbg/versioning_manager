@@ -19,7 +19,7 @@ interface VersionRecordReponse {
 
 export default {
   async getByProductId(productId: number) {
-    const response = await Api().get('/version?product_id=' + productId) as AxiosResponse<VersionRecordReponse[]>;
+    const response = await Api().post('/version/show', {ProductId: productId}) as AxiosResponse<VersionRecordReponse[]>;
     const versionList = response.data.map((item) => {
       return new VersionRecord(item.id,
         new Version(item.version.major, item.version.minor, item.version.build, item.version.revision),

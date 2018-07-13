@@ -35,15 +35,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop} from 'vue-property-decorator';
-import { Organization } from '@/models/Organization';
-import { Version } from '@/models/Version';
-import { Product } from '@/models/Product';
-import ProductService from '@/services/ProductService';
-import OrganizationService from '@/services/OrganizationService';
-import VersionService from '@/services/VersionService';
-import moment from 'moment'
-import VersionHistoryTable from '@/components/VersionHistoryTable.vue'
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Organization } from "@/models/Organization";
+import { Version } from "@/models/Version";
+import { Product } from "@/models/Product";
+import ProductService from "@/services/ProductService";
+import OrganizationService from "@/services/OrganizationService";
+import VersionService from "@/services/VersionService";
+import moment from "moment";
+import VersionHistoryTable from "@/components/VersionHistoryTable.vue";
+import { State, Action, Getter } from "vuex-class";
 
 @Component({
   components: {
@@ -53,21 +54,21 @@ import VersionHistoryTable from '@/components/VersionHistoryTable.vue'
 export default class OrgOverview extends Vue {
   private org: Organization = {
     Id: -1,
-    Name: '',
-    Description: '',
+    Name: "",
+    Description: ""
   };
   private productList: Product[] = [];
 
-  public loadOrgById(orgId: number){
+  public loadOrgById(orgId: number) {
     OrganizationService.getById(orgId)
-      .then((data) => (this.org = data))
-      .catch((error) => console.log(error));
+      .then(data => (this.org = data))
+      .catch(error => console.log(error));
   }
 
   public loadProducts(orgId: number) {
     ProductService.getByOrgId(orgId)
-      .then((data) => (this.productList = data))
-      .catch((error) => console.log(error));
+      .then(data => (this.productList = data))
+      .catch(error => console.log(error));
   }
 
   public mounted() {
@@ -79,6 +80,5 @@ export default class OrgOverview extends Vue {
 </script>
 
 <style lang="scss">
-
 </style>
 

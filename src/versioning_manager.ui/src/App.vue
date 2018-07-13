@@ -3,7 +3,7 @@
     <Sidebar :drawer='drawer'/>
 
     <v-toolbar fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="toggleSidbar"></v-toolbar-side-icon>
       <v-toolbar-title>Build Version Manager</v-toolbar-title>
     </v-toolbar>
 
@@ -24,21 +24,25 @@
 </template>
 
 <style lang="scss">
-
 </style>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import OrgCreate from './components/OrgCreate.vue';
-import Sidebar from './components/Sidebar.vue';
+import { Component, Vue } from "vue-property-decorator";
+import OrgCreate from "./components/OrgCreate.vue";
+import Sidebar from "./components/Sidebar.vue";
+import { State, Action, Getter } from "vuex-class";
 
 @Component({
   components: {
     OrgCreate,
-    Sidebar,
-  },
+    Sidebar
+  }
 })
 export default class Home extends Vue {
-  private drawer: boolean = false; // Start with the side bar is closed
+  @State("drawer") drawer!: boolean;
+  @Action("toggleDrawer") toggleDrawer: any;
+  toggleSidbar() {
+    this.toggleDrawer();
+  }
 }
 </script>

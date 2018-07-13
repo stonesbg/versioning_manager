@@ -21,56 +21,55 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop} from 'vue-property-decorator';
-import { Organization } from '@/models/Organization';
-import { Version } from '@/models/Version';
-import { Product } from '@/models/Product';
-import ProductService from '@/services/ProductService';
-import OrganizationService from '@/services/OrganizationService';
-import VersionService from '@/services/VersionService';
-import moment from 'moment'
-import { VersionRecord } from '@/models/VersionRecord';
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Organization } from "@/models/Organization";
+import { Version } from "@/models/Version";
+import { Product } from "@/models/Product";
+import ProductService from "@/services/ProductService";
+import OrganizationService from "@/services/OrganizationService";
+import VersionService from "@/services/VersionService";
+import moment from "moment";
+import { VersionRecord } from "@/models/VersionRecord";
 
 @Component
 export default class VersionHistoryTable extends Vue {
-  @Prop()
-  public productId!: number;
+  @Prop() public productId!: number;
 
   private versionTable: VersionRecord[] = [];
-  
+
   //TODO: Specify type
   private versionHeaders: any = [
-          {
-            text: 'Build Number',
-            align: 'left',
-            sortable: false,
-            value: 'version'
-          },
-          {text: 'Created Date', value: 'created_date'}
-        ];
+    {
+      text: "Build Number",
+      align: "left",
+      sortable: false,
+      value: "version"
+    },
+    { text: "Created Date", value: "created_date" }
+  ];
 
-  public loadVersions(productId: number){
+  public loadVersions(productId: number) {
     VersionService.getByProductId(productId)
-      .then((data) => {
-        console.log(data);
-        this.versionTable = data
-        })
-      .catch((error) => console.log(error));
+      .then(data => {
+        this.versionTable = data;
+      })
+      .catch(error => console.log(error));
   }
 
   public currentVersionString(): string {
-    if(this.versionTable.length > 0)
+    if (this.versionTable.length > 0)
       return this.formatVersion(this.versionTable[0].Version);
-    else
-      return '';
+    else return "";
   }
 
   public sortedVersion(): VersionRecord[] {
-    this.versionTable = this.versionTable.sort((left: VersionRecord, right: VersionRecord): number => {
-      if (left.Id < right.Id) return 1;
-      if (left.Id > right.Id) return -1;
-      return 0;
-    });
+    this.versionTable = this.versionTable.sort(
+      (left: VersionRecord, right: VersionRecord): number => {
+        if (left.Id < right.Id) return 1;
+        if (left.Id > right.Id) return -1;
+        return 0;
+      }
+    );
 
     return this.versionTable;
   }
@@ -82,17 +81,17 @@ export default class VersionHistoryTable extends Vue {
   private formatVersion(version: Version) {
     return (
       version.Major +
-      '.' +
+      "." +
       version.Minor +
-      '.' +
+      "." +
       version.Build +
-      '.' +
+      "." +
       version.Revision
     );
   }
 
   private formatDateToString(date: Date) {
-    return moment(date).format('YYYY-MM-DD, hh:mm:ss');
+    return moment(date).format("YYYY-MM-DD, hh:mm:ss");
   }
 
   private humanizeDate(date: Date) {

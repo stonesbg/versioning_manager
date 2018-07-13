@@ -9,7 +9,7 @@
         </h1>
       </v-flex>
       <v-flex xs10 offset-xs1>
-        <v-card v-for="org in orgList" :key="org.Id">
+        <v-card v-for="org in orgState.orgList" :key="org.Id">
           <v-container grid-list-xl>
             <v-layout>
               <v-flex>
@@ -34,36 +34,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import OrgCreate from '../components/OrgCreate.vue';
-import { Organization } from '../models/Organization';
-import { Version } from '../models/Version';
-import { Product } from '../models/Product';
-import OrganizationService from '../services/OrganizationService';
+import { State, Action, Getter } from "vuex-class";
+import { Component, Vue } from "vue-property-decorator";
+import OrgCreate from "../components/OrgCreate.vue";
+import { OrgState } from "@/store/types";
+
+const namespace: string = "orgStore";
 
 @Component({
   components: {
-    OrgCreate,
-}})
-export default class Home extends Vue {
-  public orgList: Organization[] = [];
-
-  public loadOrgs() {
-    OrganizationService.getAll()
-    .then((data) => {
-      this.orgList = data;
-    })
-    .catch((error) => console.log(error));
+    OrgCreate
   }
+})
+export default class Home extends Vue {
+  @State("orgStore") orgState!: OrgState;
+  @Action("loadOrgs", { namespace })
+  loadOrgs: any;
 
   public mounted() {
-    this.$store.dispatch("loadOrgList");
     this.loadOrgs();
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
 </style>
-
